@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 
 const BookCard = ({
-  title, thumbnailUrl, shortDescription, longDescription, isFav, isWanted, onlyLiked, onlyWanted,
+  title,
+  thumbnailUrl,
+  shortDescription,
+  longDescription,
+  isFav,
+  isWanted,
+  onlyLiked,
+  onlyWanted,
+  search,
 }) => {
   const [liked, setLiked] = useState(isFav);
   const [wanted, setWanted] = useState(isWanted);
@@ -14,6 +22,9 @@ const BookCard = ({
   };
 
   const displayClass = () => {
+    if (search.length > 0 && !search.some((word) => (new RegExp(word).test(title.toLowerCase())))) {
+      return 'd-none';
+    }
     if (!onlyLiked && !onlyWanted) {
       return '';
     }
@@ -31,17 +42,26 @@ const BookCard = ({
 
   const wantedText = wanted ? 'wanted' : 'want';
   const likedText = liked ? 'liked' : 'like';
-  const description = shortDescription || (longDescription ? `${longDescription.substring(0, 300)}...` : 'This book has no description');
+  const description = shortDescription
+    || (longDescription ? `${longDescription.substring(0, 300)}...` : 'This book has no description');
 
   return (
     <div className={`bookcard ${displayClass()}`}>
       <img className="bookcover" src={thumbnailUrl} alt={title} />
       <p className="title">{title}</p>
       <p className="buttonbar">
-        <button type="button" onClick={toggleLiked} className={`btn btn_${liked.toString()}`}>
+        <button
+          type="button"
+          onClick={toggleLiked}
+          className={`btn btn_${liked.toString()}`}
+        >
           {likedText}
         </button>
-        <button type="button" onClick={toggleWanted} className={`btn btn_${wanted.toString()}`}>
+        <button
+          type="button"
+          onClick={toggleWanted}
+          className={`btn btn_${wanted.toString()}`}
+        >
           {wantedText}
         </button>
       </p>
