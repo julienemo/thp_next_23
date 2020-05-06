@@ -24,6 +24,16 @@ code {
   justify-content: space-around;
 }
 
+.control_bar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.text_lg {
+  font-size: 1.5rem;
+}
+
 .bookcard {
   width: 23%;
   margin: 0.6rem;
@@ -56,6 +66,7 @@ button.btn {
   width: 5rem;
   height: 2rem;
   text-align: center;
+  margin: 1rem;
 }
 
 .btn_true {
@@ -68,4 +79,14 @@ button.btn {
   color: rgb(127, 175, 127);
   background-color: transparent;
   border: 0.1rem solid rgb(127, 175, 127);
+}
+
+.btn_lg {
+  width: 10rem !important;
+  height: 3rem !important;
+  font-size: 1.3rem;
+}
+
+.d-none {
+  display: none;
 }
