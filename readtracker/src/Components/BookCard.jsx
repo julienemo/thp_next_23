@@ -5,6 +5,7 @@ const BookCard = ({
 }) => {
   const [liked, setLiked] = useState(isFav);
   const [wanted, setWanted] = useState(isWanted);
+
   const toggleLiked = () => {
     setLiked(!liked);
   };
@@ -12,13 +13,13 @@ const BookCard = ({
     setWanted(!wanted);
   };
 
+  const cardClass = [liked ? 'liked' : '', wanted ? 'wanted' : ''].join(' ');
   const wantedText = wanted ? 'wanted' : 'want';
   const likedText = liked ? 'liked' : 'like';
-
   const description = shortDescription || (longDescription ? `${longDescription.substring(0, 300)}...` : 'This book has no description');
 
   return (
-    <div className="bookcard">
+    <div className={`bookcard ${cardClass}`}>
       <img className="bookcover" src={thumbnailUrl} alt={title} />
       <p className="title">{title}</p>
       <p className="buttonbar">
